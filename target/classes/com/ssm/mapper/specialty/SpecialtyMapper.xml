@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.specialty.SpecialtyMapper">
+	<cache></cache>
+	<select id="selectAll" resultType="Specialty">
+		select * from travel_specialty
+	</select>
+	<select id="selectSpecialtyById"  parameterType="int" resultType="Specialty">
+		select * from travel_specialty where id = #{id}
+	</select>
+	<select id="selectSpecialtysByOrigin"  parameterType="String" resultType="Specialty">
+		select * from travel_specialty where origin = #{origin}
+	</select>
+	<select id="selectCountByCondition" parameterType="SpecialtyVo" resultType="int">
+		select count(*) from travel_specialty s 
+		<where>
+			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				 s.origin = #{specialty.origin}
+			</if>
+		</where>
+	</select>
+	<select id="selectListByPage" parameterType="SpecialtyVo" resultType="Specialty">
+		select * from (select s.*,rownum rn from travel_specialty s  
+			<where>
+				 rownum &lt;= (#{currentPage} * #{pageCount})
+				<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+					and s.origin = #{specialty.origin} 
+				</if>
+				) a
+			</where>
+				where  a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	<select id="selectSpecialtysByCondition"  parameterType="SpecialtyVo" resultType="Specialty">
+		select * from travel_specialty s
+		<where>
+			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				 s.origin = #{specialty.origin}
+			</if>
+		</where>
+	</select>
+</mapper>

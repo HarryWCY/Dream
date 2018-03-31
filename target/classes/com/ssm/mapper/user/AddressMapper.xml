@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.user.AddressMapper">
+	<resultMap type="Address" id="addressMap">
+		<id column="id" property="id"/>
+		<result column="username" property="userName"/>
+		<result column="detail" property="detail"/>
+		<result column="postcode" property="postCode"/>
+		<result column="phone" property="phone"/>
+		<result column="defaul" property="defaul"/>
+	</resultMap>
+	<insert id="insertAddress" parameterType="Address">
+		insert into travel_address values(travel_address_id.nextval,
+			<if test="userName!=null">
+				#{userName},
+			</if>
+			<if test="detail!=null">
+				#{detail},
+			</if>
+			<if test="postCode!=null">
+				#{postCode},
+			</if>
+			<if test="phone!=null">
+				#{phone},
+			</if>
+			<if test="defaul!=null">
+				#{defaul},
+			</if>
+			<if test="user.id !=null">
+				#{user.id}
+			</if>
+			)
+	</insert>
+	<delete id="deleteAddressById" parameterType="int">
+		delete from travel_address where id = #{id}
+	</delete>
+	<update id="updateAddress" parameterType="Address">
+		update travel_address
+		<set>
+			<if test="userName !=null">
+				username=#{userName},
+			</if>
+			<if test="detail !=null">
+				detail=#{detail},
+			</if>
+			<if test="postCode !=null">
+				postcode=#{postCode},
+			</if>
+			<if test="phone !=null">
+				phone=#{phone},
+			</if>
+			<if test="defaul !=null">
+				defaul=#{defaul},
+			</if>
+			<if test="user !=null">
+				user_id=#{user.id}
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<update id="updateDefaultByNotId" parameterType="Address">
+		update travel_address set defaul=0 where id != #{id} and user_id=#{user.id}
+	</update>
+	<select id="selectAllByUserId" parameterType="int" resultMap="addressMap">
+		select * from travel_address where user_id = #{user.id}
+	</select>
+	<select id="selectAddressById" parameterType="int" resultMap="addressMap">
+		select * from travel_address where id = #{id}
+	</select>
+</mapper>

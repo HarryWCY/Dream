@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.cater.CaterMapper">
+	<resultMap type="Cater" id="caterMap">
+		<id column="id" property="id"/>
+		<result column="catername" property="caterName"/>
+		<result column="lv" property="lv"/>
+		<result column="phone" property="phone"/>
+		<result column="city" property="city"/>
+		<result column="address" property="address"/>
+		<result column="type" property="type"/>
+		<result column="image" property="image"/>
+		<result column="detail" property="detail"/>
+	</resultMap>
+	<select id="selectCaterByType" parameterType="int" resultMap="caterMap">
+		select * from travel_cater where type = #{type}
+	</select>
+	<select id="selectCaterById" parameterType="int" resultMap="caterMap">
+		select * from travel_cater where id = #{id}
+	</select>
+	<select id="selectEatCount" resultType="int">
+		select count(*) from travel_cater where type = '0'
+	</select>
+	<select id="selectLiveCount" resultType="int">
+		select count(*) from travel_cater where type = '1'
+	</select>
+	<select id="selectCountByCity" resultType="int" parameterType="string">
+		select count(*) from travel_cater where city = #{city }
+	</select>
+	<select id="selectAllCitys" resultType="string">
+		select distinct city from travel_cater
+	</select>
+	<select id="selectListEatByPage" parameterType="CaterVo" resultMap="caterMap">
+	select * from (select t.*,rownum rn from travel_cater t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="cater != null and cater.caterName != null and cater.caterName != ''">
+			and t.catername like '%${cater.caterName}%' 
+		</if>
+		and type = '0') a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	<select id="selectListLiveByPage" parameterType="CaterVo" resultMap="caterMap">
+	select * from (select t.*,rownum rn from travel_cater t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="cater != null and cater.caterName != null and cater.caterName != ''">
+			and t.catername like '%${cater.caterName}%' 
+		</if>
+		and type = '1') a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	<select id="selectListByPage" parameterType="CaterVo" resultMap="caterMap">
+	select * from (select t.*,rownum rn from travel_cater t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="cater != null and cater.caterName != null and cater.caterName != ''">
+			and t.catername like '%${cater.caterName}%' 
+		</if>
+		<if test="cater != null and cater.type != null">
+			and t.type = #{cater.type}
+		</if>
+		<if test="cater != null and cater.city != null">
+			and t.city = #{cater.city}
+		</if>
+		<if test="cater != null and cater.lv != null">
+			and t.lv like '%${cater.lv}%'
+		</if>
+		) a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+</mapper>
