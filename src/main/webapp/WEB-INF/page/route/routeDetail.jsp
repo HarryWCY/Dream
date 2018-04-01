@@ -129,13 +129,6 @@
                   <p>持续时间：${route.betweenTime }天</p>
                   <p>出团日期：<fmt:formatDate value="${route.startTime }" pattern="yyyy-MM-DD"/></p>
                 </div>
-                <div class="share">
-                  <img src="${path }/images/sh01.jpg" align="absmiddle"> 分享给朋友：
-                  <a href="#"><img src="${path }/images/sh02.jpg" align="absmiddle"></a> 
-                  <a href="#"><img src="${path }/images/sh03.jpg" align="absmiddle"></a>
-                  <a href="#"><img src="${path }/images/sh04.jpg" align="absmiddle"></a> 
-                  <a href="#"><img src="${path }/images/sh05.jpg" align="absmiddle"></a>
-                </div>
                 <div class="xq_button"><a href="${path }/route/routeReserve?id=${route.id}"><img src="${path }/images/order_button.jpg"></a> </div>
               </div>
             </div>

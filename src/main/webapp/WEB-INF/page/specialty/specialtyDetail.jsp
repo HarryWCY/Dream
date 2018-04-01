@@ -132,15 +132,6 @@
                   <p>月销量：${specialty.monthlySales }件  </p>
                   <p>评价：${specialty.evaluation }分  累计评价${specialty.evalCount }</p>
                 </div>
-                <div class="share">
-                  <img src="${path }/images/share.jpg" >分享给朋友：
-                  <a href="#"><img src="${path }/images/s01.jpg" ></a> 
-                  <a href="#"><img src="${path }/images/s02.jpg" ></a>
-                  <a href="#"><img src="${path }/images/s03.jpg" ></a> 
-                  <a href="#"><img src="${path }/images/s04.jpg"></a>
-                  <a href="#"><img src="${path }/images/s05.jpg"></a> 
-                  <a href="#"><img src="${path }/images/s06.jpg"></a>
-                </div>
                 <div class="xq_button"><a href="地方特产—拍下商品.html"><img src="${path }/images/buy_button.jpg"></a> <a href="地方特产—拍下商品.html"><img src="${path }/images/shop_button.jpg"></a></div>
               </div>
             </div>

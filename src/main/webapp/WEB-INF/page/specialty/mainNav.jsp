@@ -6,8 +6,6 @@
 				src="${path }/images/nav_line.jpg"></li>
 			<li><a href="${path }/route/routeList">旅游路线</a><img
 				src="${path }/images/nav_line.jpg"></li>
-			<li ><a href="${path }/sights/sightsList">旅游景点</a><img
-				src="${path }/images/nav_line.jpg"></li>
 			<li><a href="${path }/cater/caterList">餐饮住宿</a><img
 				src="${path }/images/nav_line.jpg"></li>
 			<li     class="cur"><a href="${path }/specialty/specialtyList">地方特产</a><img

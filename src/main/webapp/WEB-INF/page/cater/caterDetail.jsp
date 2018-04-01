@@ -119,12 +119,12 @@
 						<p>
 							<b>上一家：</b> 
 							<c:if test="${empty preCater }"><a href="#"><b>暂无信息！</b></a></c:if>
-							<c:if test="${!empty preCater }" ><a href="detail?id=${preCater.id }"><b style="color: green;">${preCater.caterName }</b></a></c:if>
+							<c:if test="${!empty preCater }" ><a href="${path }cater/caterDetail?id=${preCater.id }"><b style="color: green;">${preCater.caterName }</b></a></c:if>
 						</p>
 						<p>
 							<b>下一家：</b> 
 							<c:if test="${empty aftCater }"><a href="#"><b>暂无信息！</b></a></c:if>
-							<c:if test="${!empty aftCater }" ><a href="detail?id=${aftCater.id }"><b style="color: green;">${aftCater.caterName }</b></a></c:if>
+							<c:if test="${!empty aftCater }" ><a href="${path }cater/caterDetail?id=${aftCater.id }"><b style="color: green;">${aftCater.caterName }</b></a></c:if>
 						</p>
 					</div>
 				</div>
